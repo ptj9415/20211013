@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.taejoon.prj.board.service.BoardMapper">
+	<select id="boardSelectList"
+		resultType="co.taejoon.prj.board.service.BoardVO">
+		select * from board
+	</select>
+
+	<select id="boardSelect"
+		parameterType="co.taejoon.prj.board.service.BoardVO"
+		resultType="co.taejoon.prj.board.service.BoardVO">
+		select * from board where bid = #{BId}
+	</select>
+
+	<insert id="boardInsert">
+		insert into board
+		values(b_squ.nextval,#{BWriter},sysdate,#{BTitle},#{BContents},0)
+	</insert>
+	<update id="boardUpdate"
+		parameterType="co.taejoon.prj.board.service.BoardVO">
+		update board set bcontents = #{BContents} where bid =
+		#{BId}
+	</update>
+
+	<update id="boardHitUpdate">
+		update board set bhit = bhit+1 where bid = #{Bid}
+	</update>
+
+	<delete id="boardDelete"
+		parameterType="co.taejoon.prj.board.service.BoardVO">
+		delete from board where bid = #{BId}
+	</delete>
+</mapper>
